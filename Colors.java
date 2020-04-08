@@ -1,7 +1,7 @@
 
 
 /**
- * an {@code enum} of cards color
+ * an {@code enum} of card colors. 
  * 0: black, 1: red, 2: yellow, 3: green, 4: blue
  * 
  * @author Mohammad Mahdi Malmasi
