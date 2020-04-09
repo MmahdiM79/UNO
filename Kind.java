@@ -4,7 +4,7 @@
  * An {@code enum} of card kinds
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.0
+ * @version 0.1.1
  */
 public enum Kind 
 {
@@ -58,9 +58,21 @@ public enum Kind
     GREEEN_9,
     BLUE_9,
 
-    SKIP,
-    REVERSE,
-    DRAW2,
+    RED_SKIP,
+    YELLOW_SKIP,
+    GREEN_SKIP,
+    BLUE_SKIP,
+
+    RED_REVERSE,
+    YELLOW_REVERSE,
+    GREEN_REVERSE,
+    BLUE_REVERSE,
+
+    RED_DRAW2,
+    YELLOW_DRAW2,
+    GREEN_DRAW2,
+    BLUE_DRAW2,
+
     WILD_COLOR,
     WILD_DRAW,
 }
