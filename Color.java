@@ -5,7 +5,7 @@
  * 0: black, 1: red, 2: yellow, 3: green, 4: blue
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.1
+ * @version 0.1.2
  */
 public enum Color 
 {
@@ -23,10 +23,13 @@ public enum Color
         BLUE.colorCodeString = "\033[0;96m";
     }
     /**
+     * This method return the ANSI code of the given color
+     * 
+     * @param color : the color that you want its ANSI code
      * @return the ANSI code of the color
      */
-    public String getColorCodeString()
+    public String getColorCodeString(Color color)
     {
-        return colorCodeString;
+        return color.colorCodeString;
     }
 }
