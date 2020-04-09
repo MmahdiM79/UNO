@@ -4,14 +4,11 @@
  * This class represent a Card in UNO game.
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.2
+ * @version 0.1.3
  */
 public class Card
 {
             /* Feilds */
-    
-    // the kind of the card
-    private Kind cardKind;
 
     // the score of the card
     private int cardScore;
@@ -33,14 +30,12 @@ public class Card
     /**
      * Creat a new card with given details
      * 
-     * @param cardKind : the kind of the card
      * @param cardScore : the score of the card 
      * @param cardColor : the color of the card
      * @param cardCode : the code of the card 
      */
-    public Card(Kind cardKind, int cardScore, Color cardColor, int cardCode) 
+    public Card(int cardScore, Color cardColor, int cardCode) 
     {
-        this.cardKind = cardKind;
         this.cardScore = cardScore;
         this.cardColor = cardColor;
         this.cardCode = cardCode;
@@ -58,13 +53,6 @@ public class Card
 
     // * getter methods *
 
-    /**
-     * @return the kind of the card
-     */
-    public Kind getCardKind() 
-    {
-        return cardKind;
-    }
     /**
      * @return the score of the card
      */
