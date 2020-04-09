@@ -4,10 +4,11 @@
 /**
  * This method represent a numeral card in UNO game
  * It extends from {@code Card} class.
+ * The score of this cards is equal with its number
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.0
+ * @version 0.1.1
  * 
  * @see Card
  */
@@ -29,15 +30,14 @@ public class NumberCard extends Card
     /**
      * Creat a new number card with given details
      * 
-     * @param cardKind : the kind of the card
      * @param cardNumber : the number of the card. an int in range [0, 9]
      * @param cardColor : the color of the card
      * @param cardCode : the code of the card. an int in range [1, 108]
      */
-    public NumberCard(Kind cardKind, int cardNumber, Color cardColor, int cardCode)
+    public NumberCard(int cardNumber, Color cardColor, int cardCode)
     {
         // set the super class
-        super(cardKind, cardNumber, cardColor, cardCode);
+        super(cardNumber, cardColor, cardCode);
 
         // set the number of the card
         this.cardNumber = cardNumber;
