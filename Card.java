@@ -4,7 +4,7 @@
  * This class reprsent a Card in UNO game.
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.0
+ * @version 0.1.0
  */
 public class Card
 {
@@ -20,7 +20,7 @@ public class Card
     private Color cardColor;
 
     // the number of the card. (UNO game has 108 cards)
-    private int cardNumber;
+    private int cardCode;
 
 
 
@@ -36,14 +36,14 @@ public class Card
      * @param cardKind : the kind of the card
      * @param cardScore : the score of the card 
      * @param cardColor : the color of the card
-     * @param cardNumber : the number of the card 
+     * @param cardCode : the code of the card 
      */
-    public Card(Kind cardKind, int cardScore, Color cardColor, int cardNumber) 
+    public Card(Kind cardKind, int cardScore, Color cardColor, int cardCode) 
     {
         this.cardKind = cardKind;
         this.cardScore = cardScore;
         this.cardColor = cardColor;
-        this.cardNumber = cardNumber;
+        this.cardCode = cardCode;
     }
     
 
