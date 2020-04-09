@@ -1,10 +1,10 @@
 
 
 /**
- * This class reprsent a Card in UNO game.
+ * This class represent a Card in UNO game.
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.1
+ * @version 0.1.2
  */
 public class Card
 {
@@ -85,5 +85,28 @@ public class Card
     public int getCardCode() 
     {
         return cardCode;
+    }
+
+
+    /**
+     * This method check the equality between this card and the geven object
+     * This method check the code number of the cards
+     * 
+     * @param obj : the given object to check the equality 
+     * @return {@code true} if and only if the given card has a same code number with this card
+     */
+    @Override
+    public boolean equals(Object obj) 
+    {
+        // check the pointers
+        if (obj == this)
+            return true;
+
+        // check the class
+        if (!(obj instanceof Card)) 
+            return false;
+        
+        Card card = (Card) obj;
+        return cardCode == card.cardCode;
     }
 }
