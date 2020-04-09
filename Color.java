@@ -5,13 +5,25 @@
  * 0: black, 1: red, 2: yellow, 3: green, 4: blue
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.0
+ * @version 0.1.1
  */
 public enum Color 
 {
-    BLACK,
-    RED,
-    YELLOW,
-    GREEN,
-    BLUE,
+    // the game colors
+    BLACK, RED, YELLOW, GREEN, BLUE;
+
+
+    private String colorCodeString;
+    static 
+    {
+        BLACK.colorCodeString = "\033[0;30m";
+        RED.colorCodeString = "\033[0;91m";
+        YELLOW.colorCodeString = "\033[0;93m";
+        GREEN.colorCodeString = "\033[0;92m";
+        BLUE.colorCodeString = "\033[0;96m";
+    }
+    public String getColorCodeString()
+    {
+        return colorCodeString;
+    }
 }
