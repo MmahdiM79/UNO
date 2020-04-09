@@ -4,7 +4,7 @@
  * This class reprsent a Card in UNO game.
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.0
+ * @version 0.1.1
  */
 public class Card
 {
@@ -19,7 +19,7 @@ public class Card
     // the color of the card
     private Color cardColor;
 
-    // the number of the card. (UNO game has 108 cards)
+    // the code of the card. (UNO game has 108 cards)
     private int cardCode;
 
 
@@ -73,17 +73,17 @@ public class Card
         return cardScore;
     }
     /**
-     * @return the color of card
+     * @return the color of the card
      */
     public Color getCardColor() 
     {
         return cardColor;
     }
     /**
-     * @return the number card
+     * @return the code of the card
      */
-    public int getCardNumber() 
+    public int getCardCode() 
     {
-        return cardNumber;
+        return cardCode;
     }
 }
