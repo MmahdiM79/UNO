@@ -12,7 +12,7 @@ public enum Color
     // the game colors
     BLACK, RED, YELLOW, GREEN, BLUE;
 
-
+    // hold the ansi code of the colors
     private String colorCodeString;
     static 
     {
@@ -22,6 +22,9 @@ public enum Color
         GREEN.colorCodeString = "\033[0;92m";
         BLUE.colorCodeString = "\033[0;96m";
     }
+    /**
+     * @return the ANSI code of the color
+     */
     public String getColorCodeString()
     {
         return colorCodeString;
