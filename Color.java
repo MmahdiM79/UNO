@@ -5,7 +5,7 @@
  * 0: black, 1: red, 2: yellow, 3: green, 4: blue
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.5
+ * @version 0.1.6
  */
 public enum Color 
 {
@@ -35,7 +35,7 @@ public enum Color
         RED_B.colorCodeString = "\033[0;101m";
         YELLOW_B.colorCodeString = "\033[0;103m";
         GREEN_B.colorCodeString = "\033[0;102m";
-        BLUE.colorCodeString = "\033[0;106m";
+        BLUE_B.colorCodeString = "\033[0;106m";
         WHITE_B.colorCodeString = "\033[0;107m";
     }
 
