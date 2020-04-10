@@ -4,7 +4,7 @@
  * This class represent a Card in UNO game.
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.5
+ * @version 0.1.6
  */
 public class Card
 {
