@@ -4,7 +4,7 @@
  * This class represent a Card in UNO game.
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.6
+ * @version 0.1.7
  */
 public class Card
 {
@@ -114,20 +114,35 @@ public class Card
             // the top and bottom of the card
             case 1:
             case 7: 
-                return "•~~~~~~~•";
+                return Color.getColorCodeString(Color.WHITE) + "•~~~~~~~•" + 
+                        Color.getColorCodeString(Color.RESET);
 
             case 2:
-                return "|◉  ♢  ◎|";
+                return Color.getColorCodeString(Color.WHITE) + "|◉  " +
+                       Color.getColorCodeString(Color.GREEN) + "♢  " +
+                       Color.getColorCodeString(Color.WHITE) + "◎|" +
+                        Color.getColorCodeString(Color.RESET);
 
             case 3:
             case 5:
-                return "|  ♢♢♢  |";
+                return Color.getColorCodeString(Color.WHITE) + "|  " + 
+                       Color.getColorCodeString(Color.GREEN) + "♢♢♢  " +
+                       Color.getColorCodeString(Color.WHITE) + "|" +
+                        Color.getColorCodeString(Color.RESET);
 
             case 4:
-                return "| U N O |";
+                return Color.getColorCodeString(Color.WHITE) + "| " + 
+                       Color.getColorCodeString(Color.RED) + "U " + 
+                       Color.getColorCodeString(Color.YELLOW) + "N " +
+                       Color.getColorCodeString(Color.BLUE) + "O " +
+                       Color.getColorCodeString(Color.WHITE) + "|" +
+                        Color.getColorCodeString(Color.RESET); 
 
             case 6:
-                return "|◎  ♢  ◉|";
+                return Color.getColorCodeString(Color.WHITE) + "|◎  " +
+                       Color.getColorCodeString(Color.GREEN) + "♢  " + 
+                       Color.getColorCodeString(Color.WHITE) + "◉|" +
+                        Color.getColorCodeString(Color.RESET);
         }
 
         return null;
