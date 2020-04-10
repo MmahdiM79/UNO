@@ -6,7 +6,7 @@ import java.util.Scanner;
  * ( may not work on windows )
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.5
+ * @version 0.0.6
  */
 public class Printer 
 {
@@ -57,6 +57,51 @@ public class Printer
         System.out.print(  indent + "\t      " + "                0_0? ");
     }  
     
+
+    /**
+     * This method ask the number of the players
+     */
+    public static void getNumberOfThePlayers()
+    {
+        clear();
+
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.print(indent + "\b\b\b" + 
+                    "Please enter the number of the players (1 < n < 15):  ");
+    }
+
+
+    /**
+     * This method ask the player name
+     * 
+     * @param playerID : the player number
+     */
+    public static void getPlayerName(int playerID)
+    {
+        clear();
+
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.print(indent + "\t  " + 
+                    "Please type the name of the player" + playerID +":  ");
+    }
+
+
+    /**
+     * This method ask the player password
+     * 
+     * @param playerName : the name of the player
+     */
+    public static void getPlayerPass(String playerName)
+    {
+        clear();
+
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.print(indent + "\b" + 
+                            "Hi " +  Color.getColorCodeString(Color.BLACK_BRIGHT_B) + playerName +
+                    Color.getColorCodeString(Color.RESET) + " Please choose a password for yourself:  ");
+    }
+
+
 
 
 
