@@ -16,7 +16,7 @@ public class ReverseCard extends Card
            /* Constructor */
 
     /**
-     * Creat a new reverse card card with given details
+     * Creat a new reverse card with given details
      * 
      * @param cardColor : the color of the card
      * @param cardCode : the code number of the card. an int in range [1, 108]
