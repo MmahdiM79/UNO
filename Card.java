@@ -4,7 +4,7 @@
  * This class represent a Card in UNO game.
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.3
+ * @version 0.1.5
  */
 public class Card
 {
@@ -96,5 +96,40 @@ public class Card
         
         Card card = (Card) obj;
         return cardCode == card.cardCode;
+    }
+
+
+    /**
+     * This method return the {@code String} of the behind the gmae cards
+     * 
+     * @param lineNumber : the number of the card line
+     * @return a {@code String} of the given card line
+     * 
+     * @see cardsOutput.txt, (in project repository)
+     */
+    public String toString(int lineNumber)
+    {
+        switch (lineNumber)
+        {
+            // the top and bottom of the card
+            case 1:
+            case 7: 
+                return "•~~~~~~~•";
+
+            case 2:
+                return "|◉  ♢  ◎|";
+
+            case 3:
+            case 5:
+                return "|  ♢♢♢  |";
+
+            case 4:
+                return "| U N O |";
+
+            case 6:
+                return "|◎  ♢  ◉|";
+        }
+
+        return null;
     }
 }
