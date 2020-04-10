@@ -38,6 +38,29 @@ public class Printer
     }
 
 
+    /**
+     * This method print the game menu
+     */
+    public static void printMenu()
+    {
+        clear();
+        System.out.println(Color.getColorCodeString(Color.RESET));
+
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println(indent + "\t       " + "🃏 <@••••••. UNO Game .••••••@> 🀄️");
+        System.out.print("\n\n");
+        System.out.println(indent + "\t      " + "            1. New game");
+        System.out.print("\n");
+        System.out.println(indent + "\t      " + "              2. exit");
+        System.err.println(indent + "\t       " + "🀄️ <@••••••••••••••••••••••••@> 🃏");
+        System.out.print("\n\n");
+        System.out.print(  indent + "\t      " + "                0_0? ");
+    }  
+    
+
+
+
+
 
     // this method wait until player push 'enter' bottom
     private static void finishEnter(Scanner inputsSource)
