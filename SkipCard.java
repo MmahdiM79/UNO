@@ -6,7 +6,7 @@
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.0
+ * @version 0.1.1
  * 
  * @see Card
  */
@@ -33,7 +33,7 @@ public class SkipCard extends Card
 
     /**
      * This method return the {@code String} of the each line of the visual card for print it 
-     *  in terminal
+     *  in terminal. if the given number be less than 0, the super class toSetirng will be called.
      *
      * 
      * @param lineNumber : the number of the card line
@@ -41,8 +41,12 @@ public class SkipCard extends Card
      * 
      * @see cardsOutput.txt, (in project repository)
      */
+    @Override
     public String toString(int lineNumber)
     {
+        if (lineNumber < 0)
+            return super.toString((-1)*lineNumber);
+
         String cardColorCode = Color.getColorCodeString(super.getCardColor());
 
         switch (lineNumber)
