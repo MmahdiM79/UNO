@@ -5,7 +5,7 @@
  * 0: black, 1: red, 2: yellow, 3: green, 4: blue
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.6
+ * @version 0.1.7
  */
 public enum Color 
 {
@@ -13,9 +13,10 @@ public enum Color
     BLACK, RED, YELLOW, GREEN, BLUE, WHITE,
 
     // background colors
-    BLACK_B, BLACK_BRIGHT_B, RED_B, YELLOW_B, GREEN_B, BLUE_B, WHITE_B;
+    BLACK_B, BLACK_BRIGHT_B, RED_B, YELLOW_B, GREEN_B, BLUE_B, WHITE_B,
 
-
+    // reset the terminal color. default colors: text color > green, background color > black.
+    RESET;
 
     // hold the ansi code of the colors
     private String colorCodeString;
@@ -37,6 +38,9 @@ public enum Color
         GREEN_B.colorCodeString = "\033[0;102m";
         BLUE_B.colorCodeString = "\033[0;106m";
         WHITE_B.colorCodeString = "\033[0;107m";
+
+        // reset colors code
+        RESET.colorCodeString = "\033[92;40m";
     }
 
 
