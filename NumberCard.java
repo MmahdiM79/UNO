@@ -8,7 +8,7 @@
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.2
+ * @version 0.1.3
  * 
  * @see Card
  */
@@ -83,23 +83,29 @@ public class NumberCard extends Card
             // the top and bottom of the card
             case 1:
             case 7: 
-                return cardColorCode + "•~~~~~~~•";
+                return cardColorCode + "•~~~~~~~•" + 
+                        Color.getColorCodeString(Color.RESET);
 
             case 2:
-                return cardColorCode + "|" + cardNumber + "      |";
+                return cardColorCode + "|" + cardNumber + "      |" + 
+                        Color.getColorCodeString(Color.RESET);
 
             case 3:
             case 5:
-                return cardColorCode + "|       |";
+                return cardColorCode + "|       |" + 
+                        Color.getColorCodeString(Color.RESET);
 
             case 4:
-                return cardColorCode + "|   " + cardNumber + "   |";
+                return cardColorCode + "|   " + cardNumber + "   |" +
+                        Color.getColorCodeString(Color.RESET);
 
             case 6:
-                return cardColorCode + "|      " + cardNumber + "|";
+                return cardColorCode + "|      " + cardNumber + "|" +
+                        Color.getColorCodeString(Color.RESET);
 
             case 8:
-                return Color.getColorCodeString(Color.WHITE_B) + "code: " + super.getCardCode();
+                return Color.getColorCodeString(Color.WHITE_B) + "code: " + super.getCardCode() +
+                        Color.getColorCodeString(Color.RESETg);
         }
 
         return null;
