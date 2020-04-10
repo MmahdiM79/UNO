@@ -105,7 +105,7 @@ public class NumberCard extends Card
 
             case 8:
                 return Color.getColorCodeString(Color.WHITE_B) + "code: " + super.getCardCode() +
-                        Color.getColorCodeString(Color.RESETg);
+                        Color.getColorCodeString(Color.RESET);
         }
 
         return null;
