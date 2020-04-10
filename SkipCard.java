@@ -6,7 +6,7 @@
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.1
+ * @version 0.1.2
  * 
  * @see Card
  */
@@ -54,23 +54,29 @@ public class SkipCard extends Card
             // the top and bottom of the card
             case 1:
             case 7: 
-                return cardColorCode + "•~~~~~~~•";
+                return cardColorCode + "•~~~~~~~•" +
+                        Color.getColorCodeString(Color.RESET);
 
             case 2:
-                return cardColorCode + "|⍉      |";
+                return cardColorCode + "|⍉      |" +
+                        Color.getColorCodeString(Color.RESET);
 
             case 3:
             case 5:
-                return cardColorCode + "|       |";
+                return cardColorCode + "|       |" +
+                        Color.getColorCodeString(Color.RESET);
 
             case 4:
-                return cardColorCode + "|S k i p|";
+                return cardColorCode + "|S k i p|" +
+                        Color.getColorCodeString(Color.RESET);
 
             case 6:
-                return cardColorCode + "|      ⍉|";
+                return cardColorCode + "|      ⍉|" + 
+                        Color.getColorCodeString(Color.RESET);
 
             case 8:
-                return Color.getColorCodeString(Color.WHITE_B) + "code: " + super.getCardCode();
+                return Color.getColorCodeString(Color.WHITE_B) + "code: " + super.getCardCode() +
+                        Color.getColorCodeString(Color.RESET);
         }
 
         return null;
