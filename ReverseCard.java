@@ -7,7 +7,7 @@
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.0
+ * @version 0.1.1
  * 
  * @see Card
  */
@@ -76,7 +76,7 @@ public class ReverseCard extends Card
                         Color.getColorCodeString(Color.RESET);
 
             case 8:
-                return Color.getColorCodeString(Color.WHITE_B) + "code: " + super.getCardCode() +
+                return Color.getColorCodeString(Color.WHITE) + "code: " + super.getCardCode() +
                         Color.getColorCodeString(Color.RESET);
         }
 
