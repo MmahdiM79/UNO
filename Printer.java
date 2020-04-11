@@ -6,7 +6,7 @@ import java.util.Scanner;
  * ( may not work on windows )
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.6
+ * @version 0.0.9
  */
 public class Printer 
 {
@@ -67,7 +67,7 @@ public class Printer
 
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.print(indent + "\b\b\b" + 
-                    "Please enter the number of the players (1 < n < 15):  ");
+                    "Please enter the number of the players (1 < n < 8):  ");
     }
 
 
@@ -102,9 +102,82 @@ public class Printer
     }
 
 
+    /**
+     * This method ask the player pass to start his/her turn.
+     * 
+     * @param player : the player to start his/her turn
+     */
+    public static void getPassToStartTurn(Player player)
+    {
+        clear();
+
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.print(Color.getColorCodeString(Color.RESET) + "\t\t  " +
+                    "Hey " + Color.getColorCodeString(Color.BLACK_BRIGHT_B) +  player.getFirstName() + 
+                                Color.getColorCodeString(Color.RESET) + 
+                            " it's your turn. enter your pass to continue: ");
+    }
 
 
+    /**
+     * This method print the game board. t
+     * The card on the table and the color that plyers given card must have the same color as it
+     * 
+     * @param theCardOnTheBoard : the last card on the board
+     * @param colorOnTheBoard : the color of the game board
+     */
+    public static void printGameBoard(Card theCardOnTheBoard, Color colorOnTheBoard)
+    {
+        clear();
 
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n");
+        for (int j = 1; j <= 7; j++)
+        {
+            System.out.print(indent + "\t\t\b" + theCardOnTheBoard.toString(-j) + "    " + theCardOnTheBoard.toString(j));
+
+            if (j == 2)
+                System.out.print("  table color");
+            else if (j > 2 && j < 6)
+                System.out.print("    " + Color.getColorCodeString(colorOnTheBoard) + "      " + 
+                    Color.getColorCodeString(Color.RESET));
+
+            System.out.print("\n");
+        }
+
+        System.out.print("\n\n\n");
+    }
+
+
+    /**
+     * This method show the given player cards in terminal 
+     * 
+     * @param player : the player that want to see his/her cards
+     */
+    public static void printPlayerCards(Player player)
+    {
+        for (int j = 0; j < player.getPlayerCards().size(); j += 9)
+        {
+            for (int i = 1; i <= 8; i++)
+            {
+                System.out.print("\t\b");
+                for (int k = j; (k < j+9) && (k < player.getPlayerCards().size()); k++)
+                {
+                    System.out.print(player.getPlayerCards().get(k).toString(i) + "  ");
+                   
+                    if (i == 8)
+                        //      space = lenght of the previous line - current line lenght 
+                        for(int space =  player.getPlayerCards().get(k).toString(i-1).length() - player.getPlayerCards().get(k).toString(i).length(); 
+                            space > 0; space--)
+                            System.out.print(" ");
+                }
+                System.out.print("\n");
+            }
+            System.out.print("\n");
+        }
+    }
+
+
+    
 
 
     // this method wait until player push 'enter' bottom
