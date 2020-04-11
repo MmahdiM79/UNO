@@ -6,7 +6,7 @@
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.2
+ * @version 0.1.3
  * 
  * @see Card
  */
@@ -75,7 +75,7 @@ public class SkipCard extends Card
                         Color.getColorCodeString(Color.RESET);
 
             case 8:
-                return Color.getColorCodeString(Color.WHITE_B) + "code: " + super.getCardCode() +
+                return Color.getColorCodeString(Color.WHITE) + "code: " + super.getCardCode() +
                         Color.getColorCodeString(Color.RESET);
         }
 
