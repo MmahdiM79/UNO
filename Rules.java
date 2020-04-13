@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.0
+ * @version 0.0.1
  */
 public class Rules 
 {
@@ -34,6 +35,7 @@ public class Rules
     public static void preparationGameCards()
     {
         makeGameCards();
+        suffleCards();
     }
 
 
@@ -114,5 +116,62 @@ public class Rules
         // set the draw2 cards
         gameCards.add(new Draw2Card(cardColor, ++cardCode));
         gameCards.add(new Draw2Card(cardColor, ++cardCode));
+    }
+
+
+    // this method suffle the game cards
+    private static void suffleCards()
+    {
+        // hold the code number of the suffled cards
+        ArrayList<Integer> suffledCards = new ArrayList<>();
+
+
+
+        // hold the cards for swap
+        Card holdCard;
+
+        // for make random numbers
+        Random rand = new Random();
+
+        // hold the random numbers
+        int randNum1 = 0, randNum2 = 0;
+
+
+
+        // shuffle 80 cards (40 * 2 cards)
+        for (int n = 0; n < 40; n++)
+        {
+            //   * generate the first random number *
+            // while find a valid number
+            while (true)
+            {
+                // generate the random number
+                randNum1 = rand.nextInt(108);
+
+                // check the generated number
+                if (!suffledCards.contains(randNum1))
+                    break;
+            }
+            suffledCards.add(randNum1);
+
+
+            //   * generate the second random number *
+            // while find a valid number
+            while (true)
+            {
+                // generate the random number
+                randNum2 = rand.nextInt(108);
+
+                // check the generated number
+                if (!suffledCards.contains(randNum2) && randNum2 != randNum1) 
+                    break;
+            }
+            suffledCards.add(randNum2);
+
+            // swap the cards
+            holdCard = gameCards.get(randNum1);
+            gameCards.set(randNum1, gameCards.get(randNum2));
+            gameCards.set(randNum2, holdCard);
+        }
     }
 }
