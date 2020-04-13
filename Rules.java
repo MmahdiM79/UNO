@@ -6,14 +6,17 @@ import java.util.Random;
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.2
+ * @version 0.0.4
  */
 public class Rules 
 {
             /* Feilds */
 
+    // the players
+    private static ArrayList<Player> players = new ArrayList<>();
+
     // the cards of the game
-    public static ArrayList<Card> gameCards = new ArrayList<>();
+    private static ArrayList<Card> gameCards = new ArrayList<>();
 
     // last card on the board
     private static Card boardCard;
@@ -30,6 +33,29 @@ public class Rules
             /* Methods */
 
     /**
+     * This method add the given player to the game
+     * 
+     * @param playerToAdd : player to add to the game
+     * @return {@code true} (as specified by {@link ArrayList#add(Object)})
+     */
+    public static boolean addPlayer(Player playerToAdd)
+    {
+        return players.add(playerToAdd);
+    }
+
+
+    /**
+     * This methed return the player at given index
+     * 
+     * @param playerIndex : the index of the player that you want
+     * @return the player at the given index
+     */
+    public static Player getPlayer(int playerIndex)
+    {
+        return players.get(playerIndex);
+    }
+
+    /**
      * This mehtod preparation the game cards to start the game
      */
     public static void preparationGameCards()
@@ -40,6 +66,40 @@ public class Rules
 
 
 
+
+
+
+
+    // this method reverse the players array list
+    private static void revesePlayers()
+    {
+        // hold the player for swap
+        Player holdPlayer;
+
+        for (int first = 0, end = players.size()-1; first < players.size()/2; first++, end--)
+        {
+            holdPlayer = players.get(first);
+            players.set(first, players.get(end));
+            players.set(end, holdPlayer);
+        }
+    }
+
+
+    // this method sort the players by their scores
+    private static void sortPlayers()
+    {
+        // hold the player for swap
+        Player holdPlayer;
+
+        for (int i = 0; i < players.size(); i++)
+            for (int j = i; j < players.size(); j++)
+                if (players.get(i).getScore() < players.get(j).getScore())
+                {
+                    holdPlayer = players.get(i);
+                    players.set(i, players.get(j));
+                    players.set(j, holdPlayer);
+                }
+    }
 
 
     // this method creat the game cards
