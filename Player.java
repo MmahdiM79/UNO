@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.5
+ * @version 0.1.6
  * 
  * @see Person
  */
@@ -33,10 +33,10 @@ public class Player extends Person
 
           /* Constructor */
 
-    public Player(String firstName, String lastName, int age,  String playerPass, String gender)
+    public Player(String firstName, String playerPass)
     {
         // set the super class
-        super(firstName, lastName, age, gender);
+        super(firstName, "nevermind", 0, "nevermind");
 
 
         this.score = 0;
