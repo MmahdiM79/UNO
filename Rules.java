@@ -6,7 +6,7 @@ import java.util.Random;
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.1
+ * @version 0.0.2
  */
 public class Rules 
 {
@@ -81,28 +81,28 @@ public class Rules
     private static void makeCards(Color cardColor, int cardCode)
     {
         // set the first set of cards
-        System.out.println(gameCards.add(new NumberCard(0, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(1, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(2, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(3, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(4, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(5, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(6, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(7, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(8, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(9, cardColor, ++cardCode)));
+        gameCards.add(new NumberCard(0, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(1, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(2, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(3, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(4, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(5, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(6, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(7, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(8, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(9, cardColor, ++cardCode));
 
 
         // set the second set of cards
-        System.out.println(gameCards.add(new NumberCard(1, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(2, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(3, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(4, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(5, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(6, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(7, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(8, cardColor, ++cardCode)));
-        System.out.println(gameCards.add(new NumberCard(9, cardColor, ++cardCode)));
+        gameCards.add(new NumberCard(1, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(2, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(3, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(4, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(5, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(6, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(7, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(8, cardColor, ++cardCode));
+        gameCards.add(new NumberCard(9, cardColor, ++cardCode));
             
 
         // set the skip cards
