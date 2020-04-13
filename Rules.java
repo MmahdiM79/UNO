@@ -6,7 +6,7 @@ import java.util.Random;
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.4
+ * @version 0.0.5
  */
 public class Rules 
 {
@@ -31,6 +31,16 @@ public class Rules
 
 
             /* Methods */
+            
+    /**
+     * This mehtod preparation the game cards to start the game
+     */
+    public static void preparationGameCards()
+    {
+        makeGameCards();
+        suffleCards();
+    }
+
 
     /**
      * This method add the given player to the game
@@ -55,13 +65,22 @@ public class Rules
         return players.get(playerIndex);
     }
 
+
     /**
-     * This mehtod preparation the game cards to start the game
+     * This method distribute the cards between players
+     * At the start the game each player should have 7 cards
      */
-    public static void preparationGameCards()
+    public static void distributeCards()
     {
-        makeGameCards();
-        suffleCards();
+        for (int n = 0; n < 7; n++)
+        {
+            for (Player p: players)
+            {
+                // get the card to the player
+                p.addCard(gameCards.get(0));
+                gameCards.remove(0);
+            }
+        }
     }
 
 
