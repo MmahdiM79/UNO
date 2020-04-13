@@ -6,7 +6,7 @@ import java.util.Scanner;
  * ( may not work on windows )
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.9
+ * @version 0.0.10
  */
 public class Printer 
 {
@@ -76,13 +76,13 @@ public class Printer
      * 
      * @param playerID : the player number
      */
-    public static void getPlayerName(int playerID)
+    public static void getPlayerName(int playerNum)
     {
         clear();
 
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.print(indent + "\t  " + 
-                    "Please type the name of the player" + playerID +":  ");
+                    "Please type the name of the player" + playerNum +":  ");
     }
 
 
@@ -174,6 +174,21 @@ public class Printer
             }
             System.out.print("\n");
         }
+    }
+
+
+    /**
+     * This method warn the player that his/her input is in valid
+     * 
+     * @param finish : the player input source
+     */
+    public static void inValidInputError(Scanner finish)
+    {
+        System.out.println(indent + "\t         " + 
+                                Color.getColorCodeString(Color.YELLOW)+ Color.getColorCodeString(Color.RED) +
+                                            "<@ ! YOUR INPUT IS INVALID ! @>" + 
+                                            Color.getColorCodeString(Color.RESET));
+        finishEnter(finish);
     }
 
 
