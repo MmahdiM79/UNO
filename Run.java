@@ -7,7 +7,7 @@ import java.util.Scanner;
  * (may not work on windows)
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.0 
+ * @version 0.0.3 
  */
 public class Run 
 {
@@ -22,9 +22,13 @@ public class Run
 
 
 
-        // hold the input to check that its valid or not
-        String holdInput;
 
+        //  * required variables *
+        String holdInput; // hold the input to check that its valid or not
+        int numberOfPlayers; // the number of the game players
+        Player holdPlayer; // hold the player for add it to the players list
+        String newPlayerName, newPlayerPass; // get the new player details
+        
 
         // while player choose exit option 
         while (true)
@@ -47,6 +51,7 @@ public class Run
             switch (holdInput)
             {
                 case "1":
+
                     // while the plahyer choose a valid int
                     while (true)
                     {
@@ -60,6 +65,32 @@ public class Run
                         else 
                             Printer.inValidInputError(inputs);
                     }
+
+
+                    // set the number of the players
+                    numberOfPlayers = (int)holdInput.charAt(0) - (int)'0';
+
+                    // get the players detials
+                    for (int n = 0; n < numberOfPlayers; n++)
+                    {
+                        // get the player name
+                        Printer.getPlayerName(n+1);
+                        newPlayerName = inputs.nextLine();
+
+                        // get the player password
+                        Printer.getPlayerPass(newPlayerName);
+                        newPlayerPass = inputs.nextLine();
+
+                        
+                        // creat new player
+                        Rules.addPlayer(new Player(newPlayerName, newPlayerPass));
+                    }
+
+                    // get the cards to the players
+                    Rules.preparationGameCards();
+                    Rules.distributeCards();
+
+            
 
                 break;
 
