@@ -6,7 +6,7 @@ import java.util.Random;
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.7
+ * @version 0.0.8
  */
 public class Rules 
 {
@@ -23,6 +23,9 @@ public class Rules
 
     // last color of the board that plyers should put cards as the same color with it
     private static Color boardColor;
+
+    // hold the penalty cards
+    private static ArrayList<Card> penaltyCards = new ArrayList<>();
 
 
 
@@ -96,25 +99,53 @@ public class Rules
     /**
      * This method check the player choosen card
      * 
+     * 
      * @param playerChoosenCard : the player choosen card
+     * @param player : chooser player
+     *  
      * @return {@code ture} if player choose is valid(as specified by UNO rules).
      *         otherwise {@code false}.
      */
-    public static boolean checkChoose(Card playerChoosenCard)
+    public static boolean checkChoose(Card playerChoosenCard, Player player)
     {
-        if (playerChoosenCard instanceof WildCard || playerChoosenCard instanceof WildDrawCard)
+        // check the wild cards
+        if (playerChoosenCard instanceof WildCard)
             return true;
 
+
+        // check the wild draw cards
+        if (playerChoosenCard instanceof WildDrawCard)
+        {
+            for (Card card: player.getPlayerCards())
+            {
+                if (card instanceof WildDrawCard)
+                    continue;
+
+                if (checkChoose(playerChoosenCard, player))
+                    return false;
+            }
+
+            return true;
+        }
+            
+        // check the color of cards
         if (playerChoosenCard.getCardColor() == boardColor)
             return true;
 
+        // check the number of number cards
         if (playerChoosenCard instanceof NumberCard && boardCard instanceof NumberCard)
             if (playerChoosenCard.getCardScore() == boardCard.getCardScore())
                 return true;
+
+        // check the skip cards
+        if (playerChoosenCard instanceof SkipCard && boardCard instanceof SkipCard)
+            return true;
             
 
         return false;
     }
+
+
 
 
 
@@ -151,6 +182,14 @@ public class Rules
                     players.set(i, players.get(j));
                     players.set(j, holdPlayer);
                 }
+    }
+
+
+    // this method change the board card
+    private static void changeBoardCard(Card newCard)
+    {
+        gameCards.add(boardCard);
+        boardCard = newCard;
     }
 
 
