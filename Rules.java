@@ -6,7 +6,7 @@ import java.util.Random;
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.8
+ * @version 0.0.9
  */
 public class Rules 
 {
@@ -144,6 +144,42 @@ public class Rules
 
         return false;
     }
+
+
+    /**
+     * This method apply the player choice
+     * 
+     * @param playerChoosenCard : the player choosen card
+     * @param choosenColor : the choosen player color (in wild card cases)
+     */
+    public static void applyChoose(Card playerChoosenCard, Color choosenColor)
+    {
+        changeBoardCard(playerChoosenCard);
+        boardColor = choosenColor;
+
+
+
+
+        if (playerChoosenCard instanceof WildDrawCard)
+        {
+            for (int n = 0; n < 4; n++)
+            {
+                penaltyCards.add(gameCards.get(0));
+                gameCards.remove(0);
+            }
+        }
+
+        
+        else if (playerChoosenCard instanceof Draw2Card)
+        {
+            for (int n = 0; n < 2; n++)
+            {
+                penaltyCards.add(gameCards.get(0));
+                gameCards.remove(0);
+            }
+        } 
+    }
+
 
 
 
