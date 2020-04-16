@@ -7,7 +7,7 @@ import java.util.Scanner;
  * ( may not work on windows )
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.11
+ * @version 0.0.12
  */
 public class Printer 
 {
@@ -190,6 +190,19 @@ public class Printer
             }
             System.out.print("\n");
         }
+    }
+
+
+    /**
+     * This method ask the code of the player choosen card
+     * 
+     * @param player : the player whose turn it is
+     */
+    public static void getPlayerChoice(Player player)
+    {
+        System.out.println("hey " + Color.getColorCodeString(Color.BLACK_BRIGHT_B) +
+                            player.getFirstName() + Color.getColorCodeString(Color.RESET) +
+                                "choose a Card (enter the code of your choosen card):  ");
     }
 
 
