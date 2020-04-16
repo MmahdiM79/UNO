@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.6
+ * @version 0.1.7
  * 
  * @see Person
  */
@@ -75,6 +75,13 @@ public class Player extends Person
     public ArrayList<Card> getPlayerCards() 
     {
         return playerCards;
+    }
+    /**
+     * @return the number of the player cards
+     */
+    public int getNumberOfPlayerCards()
+    {
+        return playerCards.size();
     }
 
 
