@@ -6,7 +6,7 @@ import java.util.Random;
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.9
+ * @version 0.0.10
  */
 public class Rules 
 {
@@ -181,12 +181,26 @@ public class Rules
     }
 
 
+    public static void runGame()
+    {
+        int currentPlayer = firstPlayer();
+    }
 
 
 
 
 
 
+
+
+
+
+    // this method choose the first player randomly
+    private static int firstPlayer()
+    {
+        Random rand = new Random();
+        return rand.nextInt(players.size());
+    }
 
 
     // this method reverse the players array list
