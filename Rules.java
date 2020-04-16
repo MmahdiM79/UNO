@@ -6,7 +6,7 @@ import java.util.Random;
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.5
+ * @version 0.0.6
  */
 public class Rules 
 {
@@ -63,6 +63,15 @@ public class Rules
     public static Player getPlayer(int playerIndex)
     {
         return players.get(playerIndex);
+    }
+
+
+    /**
+     * @return the players
+     */
+    public static ArrayList<Player> getPlayers()
+    {
+        return players;
     }
 
 
