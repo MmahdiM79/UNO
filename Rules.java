@@ -6,7 +6,7 @@ import java.util.Random;
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.10
+ * @version 0.0.11
  */
 public class Rules 
 {
@@ -184,6 +184,11 @@ public class Rules
     public static void runGame()
     {
         int currentPlayer = firstPlayer();
+
+        while (!endGame())
+        {
+
+        }
     }
 
 
@@ -240,6 +245,19 @@ public class Rules
     {
         gameCards.add(boardCard);
         boardCard = newCard;
+    }
+
+
+    // this method return true if game endded
+    private static boolean endGame()
+    {
+        for (Player player: players)
+        {
+            if (player.getScore() == 0)
+                return true;
+        }
+
+        return false;
     }
 
 
