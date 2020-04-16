@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -6,7 +7,7 @@ import java.util.Scanner;
  * ( may not work on windows )
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.10
+ * @version 0.0.11
  */
 public class Printer 
 {
@@ -145,6 +146,21 @@ public class Printer
         }
 
         System.out.print("\n\n\n");
+    }
+
+
+    /**
+     * This method show the number of the players cards
+     * 
+     * @param players : the game players
+     */
+    public static void printNumberOfPlayersCards(ArrayList<Player> players)
+    {
+        System.out.println("Number Of The Players Cards:");
+        for (Player player: players)
+        {
+            System.out.println("\t " + player.getFirstName() + ":  " + player.getNumberOfPlayerCards());
+        }
     }
 
 
