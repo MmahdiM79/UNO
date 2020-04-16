@@ -6,7 +6,7 @@ import java.util.Random;
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.6
+ * @version 0.0.7
  */
 public class Rules 
 {
@@ -90,6 +90,30 @@ public class Rules
                 gameCards.remove(0);
             }
         }
+    }
+
+
+    /**
+     * This method check the player choosen card
+     * 
+     * @param playerChoosenCard : the player choosen card
+     * @return {@code ture} if player choose is valid(as specified by UNO rules).
+     *         otherwise {@code false}.
+     */
+    public static boolean checkChoose(Card playerChoosenCard)
+    {
+        if (playerChoosenCard instanceof WildCard || playerChoosenCard instanceof WildDrawCard)
+            return true;
+
+        if (playerChoosenCard.getCardColor() == boardColor)
+            return true;
+
+        if (playerChoosenCard instanceof NumberCard && boardCard instanceof NumberCard)
+            if (playerChoosenCard.getCardScore() == boardCard.getCardScore())
+                return true;
+            
+
+        return false;
     }
 
 
