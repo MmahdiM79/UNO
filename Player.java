@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.8
+ * @version 0.1.9
  * 
  * @see Person
  */
@@ -103,13 +103,25 @@ public class Player extends Person
     /**
      * Remove a card from player cards
      * 
-     * @param cardToRemove
-     * @return {@code true} if and only if the player have the given card
+     * @param cardCodeToRemove
+     * @return the removed Card
      */
-    public boolean removeCard(Card cardToRemove)
+    public Card removeCard(int cardCodeToRemove)
     {
+        Card cardToRemove = null;
+        for (Card card: playerCards)
+        {
+            if (card.getCardCode() == cardCodeToRemove)
+            {
+                cardToRemove = card;
+                break;
+            }
+        } 
+
         score -= cardToRemove.getCardScore();
-        return playerCards.remove(cardToRemove);
+        playerCards.remove(cardCodeToRemove);
+
+        return cardToRemove;
     }
 
 
