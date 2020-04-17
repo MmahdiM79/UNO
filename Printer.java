@@ -7,7 +7,7 @@ import java.util.Scanner;
  * ( may not work on windows )
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.13
+ * @version 0.0.14
  */
 public class Printer 
 {
@@ -131,7 +131,7 @@ public class Printer
     {
         clear();
 
-        System.out.print("\n\n\n\n\n\n\n");
+        System.out.print("\n\n\n");
         for (int j = 1; j <= 7; j++)
         {
             System.out.print(indent + "\t\t\b" + theCardOnTheBoard.toString(-j) + "    " + theCardOnTheBoard.toString(j));
@@ -157,21 +157,28 @@ public class Printer
      */
     public static void printNumberOfPlayersCards(ArrayList<Player> players, int currentPlayerIndex)
     {
-        System.out.println("\nNumber Of The Players Cards:");
+        System.out.println("\nNumber Of The Players Cards:\n");
 
         int cntr = 0;
         for (Player player: players)
         {
             System.out.print("\t " + player.getFirstName() + ":  " + player.getNumberOfPlayerCards());
 
+            if (cntr == 0 && (currentPlayerIndex == (players.size()-1)))
+                System.out.println("\t---> (next player)");
+
             if (cntr == currentPlayerIndex)
                 System.out.println("\t---> (currrent player)");
             else if ((cntr-1) == currentPlayerIndex)
                 System.out.println("\t---> (next player)");
+            else
+                System.out.print("\n");
         
 
             cntr++;
         }
+
+        System.out.print("\n\n");
     }
 
 
@@ -211,7 +218,7 @@ public class Printer
      */
     public static void getPlayerChoice(Player player)
     {
-        System.out.println("hey " + Color.getColorCodeString(Color.BLACK_BRIGHT_B) +
+        System.out.print("\nhey " + Color.getColorCodeString(Color.BLACK_BRIGHT_B) +
                             player.getFirstName() + Color.getColorCodeString(Color.RESET) +
                                 "choose a Card (enter the code of your choosen card):  ");
     }
