@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.7
+ * @version 0.1.8
  * 
  * @see Person
  */
@@ -110,5 +110,23 @@ public class Player extends Person
     {
         score -= cardToRemove.getCardScore();
         return playerCards.remove(cardToRemove);
+    }
+
+
+    /**
+     * This method check that the player have a card with given code number or not
+     * 
+     * @param cardCode : the code of card that you want to check
+     * @return {@code true} if player have card with given code number 
+     */
+    public boolean haveCard(int cardCode)
+    {
+        for (Card card: playerCards)
+        {
+            if (card.getCardCode() == cardCode)
+                return true;
+        }
+
+        return false;
     }
 }
