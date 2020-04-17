@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 
 /**
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.11
+ * @version 0.0.14
  */
 public class Rules 
 {
@@ -93,6 +94,19 @@ public class Rules
                 gameCards.remove(0);
             }
         }
+
+
+        // set the board card
+        while (!(gameCards.get(0) instanceof NumberCard))
+        {
+            boardCard = gameCards.get(0);
+            gameCards.remove(0);
+            gameCards.add(boardCard);
+        }
+
+        boardCard = gameCards.remove(0);
+        boardColor = boardCard.getCardColor();
+        gameCards.remove(0);
     }
 
 
@@ -181,13 +195,56 @@ public class Rules
     }
 
 
-    public static void runGame()
+    public static void runGame(Scanner inputs)
     {
-        int currentPlayer = firstPlayer();
+
+        Player currentPlayer;
+        int currentPlayerindex = firstPlayer();
+        int increasment = 1;
+        String holdInput;
+
+
 
         while (!endGame())
         {
+            currentPlayer = players.get(currentPlayerindex);
 
+            
+            // while the player enter his/her password 
+            while (true)
+            {
+                // ask the player password
+                Printer.getPassToStartTurn(currentPlayer);
+                holdInput = inputs.nextLine();
+
+                // check player input
+                if (currentPlayer.getPlayerPass().equals(holdInput))
+                    break;
+
+                // say that player input is incorrect
+                Printer.inValidInputError(inputs);
+            }
+
+            // show the board, number of the other players cards and current player cards
+            Printer.printGameBoard(boardCard, boardColor);
+            Printer.printNumberOfPlayersCards(players, currentPlayerindex );
+            Printer.printPlayerCards(currentPlayer);
+
+
+            // while player choose a vlid card code
+            while (true)
+            {
+                // ask the player choice
+                Printer.getPlayerChoice(currentPlayer);
+                holdInput = inputs.nextLine();
+
+                // check player choice
+                if (in)
+            
+                break;
+            }
+
+            break;
         }
     }
 
@@ -392,5 +449,18 @@ public class Rules
             gameCards.set(randNum1, gameCards.get(randNum2));
             gameCards.set(randNum2, holdCard);
         }
+    }
+
+
+    // this method check that the given string can refer to a int or not
+    private static boolean isInt(String stringToCheck)
+    {
+        for (int n = 0; n < stringToCheck.length(); n++)
+        {
+            if (!('0' <= stringToCheck.charAt(n) && stringToCheck.charAt(0) <= '9'))
+                return false;
+        }
+
+        return true;
     }
 }
