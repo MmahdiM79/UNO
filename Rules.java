@@ -8,7 +8,7 @@ import java.util.Scanner;
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.0
+ * @version 0.1.5
  */
 public class Rules 
 {
@@ -223,6 +223,7 @@ public class Rules
         int currentPlayerindex = firstPlayer(); // hold the current player index
         Card playerChoosenCard; // hold the player choosen card
         String holdInput; // hold the player inputs
+        Bot bot; // when bot want to play
 
 
 
@@ -233,22 +234,24 @@ public class Rules
             currentPlayer = players.get(currentPlayerindex);
 
             
-            // get the penalty cards
+        
             // while the player enter his/her password 
-            while (true)
+            if (!(currentPlayer instanceof Bot))
             {
-                // ask the player password
-                Printer.getPassToStartTurn(currentPlayer);
-                holdInput = inputs.nextLine();
-                
-                // check player input
-                if (currentPlayer.getPlayerPass().equals(holdInput))
-                break;
-                
-                // say that player input is incorrect
-                Printer.inValidInputError(inputs);
+                while (true)
+                {
+                    // ask the player password
+                    Printer.getPassToStartTurn(currentPlayer);
+                    holdInput = inputs.nextLine();
+                    
+                    // check player input
+                    if (currentPlayer.getPlayerPass().equals(holdInput))
+                    break;
+                    
+                    // say that player input is incorrect
+                    Printer.inValidInputError(inputs);
+                }
             }
-
 
             // the draw2 case
             if (penaltyCards.size() != 0)
@@ -295,7 +298,8 @@ public class Rules
 
 
                     // say to player that he/she can't choose any card
-                    Printer.noChoiceError(inputs);
+                    if (!(currentPlayer instanceof Bot))
+                        Printer.noChoiceError(inputs);
 
                     // go the the next player
                     currentPlayerindex = ((currentPlayerindex+1)%players.size());
@@ -303,6 +307,20 @@ public class Rules
                 }
             }
             
+
+            // it the current player is a bot
+            if (currentPlayer instanceof Bot)
+            {
+                bot = (Bot)currentPlayer;
+
+                playerChoosenCard = bot.playTurn(players,  penaltyCards, currentPlayerindex);
+
+
+                // go to the next player
+                currentPlayerindex = setIndex(playerChoosenCard, currentPlayerindex);
+                continue;
+            }
+
 
             // while player choose a valid card
             while (true)
@@ -419,6 +437,21 @@ public class Rules
         sortPlayers();
         Printer.printScores(players, inputs);
     }
+
+
+    /**
+     * This method reset the game variables
+     */
+    public static void reset()
+    {
+        players = new ArrayList<>();
+        gameCards = new ArrayList<>();
+        penaltyCards = new ArrayList<>();
+    }
+
+
+
+
 
 
 
@@ -543,7 +576,7 @@ public class Rules
     {
         for (Player player: players)
         {
-            if (player.getScore() == 0)
+            if (player.getNumberOfPlayerCards() == 0)
                 return true;
         }
 
