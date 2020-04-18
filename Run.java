@@ -7,7 +7,7 @@ import java.util.Scanner;
  * (may not work on windows)
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.3 
+ * @version 0.1.0 
  */
 public class Run 
 {
@@ -22,11 +22,9 @@ public class Run
 
 
 
-
         //  * required variables *
         String holdInput; // hold the input to check that its valid or not
         int numberOfPlayers; // the number of the game players
-        Player holdPlayer; // hold the player for add it to the players list
         String newPlayerName, newPlayerPass; // get the new player details
         
 
@@ -77,20 +75,34 @@ public class Run
                         Printer.getPlayerName(n+1);
                         newPlayerName = inputs.nextLine();
 
-                        // get the player password
-                        Printer.getPlayerPass(newPlayerName);
-                        newPlayerPass = inputs.nextLine();
 
-                        
-                        // creat new player
-                        Rules.addPlayer(new Player(newPlayerName, newPlayerPass));
+                        if (newPlayerName.toLowerCase().equals("bot"))
+                        {
+                            // creat a bot
+                            Rules.addPlayer(new Bot(n));
+                        }
+                        else 
+                        {
+                            // get the player password
+                            Printer.getPlayerPass(newPlayerName);
+                            newPlayerPass = inputs.nextLine();
+
+                    
+                            // creat new player
+                            Rules.addPlayer(new Player(newPlayerName, newPlayerPass));
+                        }
                     }
 
+                    
                     // get the cards to the players
                     Rules.preparationGameCards();
                     Rules.distributeCards();
 
-            
+                    // run the game
+                    Rules.runGame(inputs);
+
+                    // reset the game
+                    Rules.reset();
 
                 break;
 
