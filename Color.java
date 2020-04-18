@@ -5,7 +5,7 @@
  * 0: black, 1: red, 2: yellow, 3: green, 4: blue
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.8
+ * @version 0.2.0
  */
 public enum Color 
 {
