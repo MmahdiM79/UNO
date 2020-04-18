@@ -13,6 +13,7 @@ public class Run
 {
     // for get the players inputs
     private static Scanner inputs = new Scanner(System.in);
+ 
 
 
     public static void main(String[] args) 
