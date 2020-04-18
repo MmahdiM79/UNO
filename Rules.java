@@ -8,7 +8,7 @@ import java.util.Scanner;
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.15
+ * @version 0.1.0
  */
 public class Rules 
 {
@@ -143,15 +143,33 @@ public class Rules
 
             return true;
         }
-            
+ 
+
+        // check draw2 cards
+        if (boardCard instanceof Draw2Card && penaltyCards.size() != 0)
+        {
+            if (playerChoosenCard instanceof Draw2Card)
+                return true;
+            else
+                return false;
+        }
+          
+
+        // revers card case
+        if (boardCard instanceof ReverseCard && playerChoosenCard instanceof ReverseCard)
+            return true;
+        
+
         // check the color of cards
         if (Color.getBackgroundColor(playerChoosenCard.getCardColor()) == boardColor)
             return true;
 
+
         // check the number of number cards
         if (playerChoosenCard instanceof NumberCard && boardCard instanceof NumberCard)
             if (playerChoosenCard.getCardScore() == boardCard.getCardScore())
-                return true;
+        
+            return true;
 
         // check the skip cards
         if (playerChoosenCard instanceof SkipCard && boardCard instanceof SkipCard)
@@ -204,7 +222,6 @@ public class Rules
         Player currentPlayer; // hold the current player
         int currentPlayerindex = firstPlayer(); // hold the current player index
         Card playerChoosenCard; // hold the player choosen card
-        Color playerChoosenColor; // hold the player choosen color
         String holdInput; // hold the player inputs
 
 
@@ -216,6 +233,7 @@ public class Rules
             currentPlayer = players.get(currentPlayerindex);
 
             
+            // get the penalty cards
             // while the player enter his/her password 
             while (true)
             {
@@ -229,6 +247,35 @@ public class Rules
                 
                 // say that player input is incorrect
                 Printer.inValidInputError(inputs);
+            }
+
+
+            // the draw2 case
+            if (penaltyCards.size() != 0)
+            {
+                boolean check = false;
+                for (Card card: currentPlayer.getPlayerCards())
+                {
+                    if (card instanceof Draw2Card)
+                    {
+                        check = true;
+                        break;
+                    }
+                }
+                
+                if (!check)
+                {
+                    int n = penaltyCards.size();
+                    for (; n > 0; n--)
+                    {
+                        currentPlayer.addCard(penaltyCards.get(0));
+                        penaltyCards.remove(0);
+                    }
+                }
+
+                // go the the next player
+                currentPlayerindex = ((currentPlayerindex+1)%players.size());
+                continue;
             }
             
 
@@ -251,7 +298,7 @@ public class Rules
                     Printer.noChoiceError(inputs);
 
                     // go the the next player
-                    currentPlayerindex = setIndex(boardCard, currentPlayerindex);
+                    currentPlayerindex = ((currentPlayerindex+1)%players.size());
                     continue;
                 }
             }
@@ -315,6 +362,25 @@ public class Rules
                             Printer.printPlayerCards(currentPlayer);
                         }
 
+                        switch (holdInput)
+                        {
+                            case "1":
+                                applyChoose(playerChoosenCard, Color.RED);
+                            break;
+
+                            case "2":
+                                applyChoose(playerChoosenCard, Color.YELLOW);
+                            break;
+
+                            case "3":
+                                applyChoose(playerChoosenCard, Color.GREEN);
+                            break;
+
+                            case "4":
+                                applyChoose(playerChoosenCard, Color.BLUE);
+                            break;
+                        }
+                        
                     } 
 
                     else 
@@ -332,9 +398,26 @@ public class Rules
                 Printer.inValidInputError(inputs);
             }
 
+            // wild draw case
+            if (playerChoosenCard instanceof WildDrawCard)
+            {
+                int index = (currentPlayerindex+1)%players.size();
+                int n = penaltyCards.size();
+
+                for (; n > 0; n--)
+                {
+                    players.get(index).addCard(penaltyCards.get(0));;
+                    penaltyCards.remove(0);
+                }
+            }
+
+
             // go to the next player
             currentPlayerindex = setIndex(playerChoosenCard, currentPlayerindex);
         }
+
+        sortPlayers();
+        Printer.printScores(players, inputs);
     }
 
 
@@ -377,7 +460,15 @@ public class Rules
 
         for (int i = 0; i < players.size(); i++)
             for (int j = i; j < players.size(); j++)
-                if (players.get(i).getScore() < players.get(j).getScore())
+                if (players.get(i).getScore() > players.get(j).getScore())
+                {
+                    holdPlayer = players.get(i);
+                    players.set(i, players.get(j));
+                    players.set(j, holdPlayer);
+                }
+                else if (players.get(i).getScore() == players.get(j).getScore()
+                         &&
+                        (players.get(i).getNumberOfPlayerCards() > players.get(j).getNumberOfPlayerCards()))
                 {
                     holdPlayer = players.get(i);
                     players.set(i, players.get(j));
@@ -419,23 +510,31 @@ public class Rules
     private static int setIndex(Card playerChoosenCard, int currentPlayerindex)
     {
         // skip card case
-        if (playerChoosenCard instanceof SkipCard)
-            return currentPlayerindex+2;
+        if (playerChoosenCard instanceof SkipCard || playerChoosenCard instanceof WildDrawCard)
+            currentPlayerindex = currentPlayerindex+2;
+
 
         // reverse card case
-        if (playerChoosenCard instanceof ReverseCard)
+        else if (playerChoosenCard instanceof ReverseCard)
         {
             revesePlayers();
-            return (players.size() - currentPlayerindex);
+            currentPlayerindex = (players.size() - currentPlayerindex);
         }
 
+
         // finish one round case
-        if (currentPlayerindex+1 == players.size())
-            return 0;
+        else if (currentPlayerindex+1 == players.size())
+            currentPlayerindex = 0;
 
 
         // other cases
-        return currentPlayerindex+1;
+        else 
+            currentPlayerindex++;
+
+
+    
+        
+        return (currentPlayerindex%players.size());
     }
 
 
