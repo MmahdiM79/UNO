@@ -6,7 +6,7 @@ import java.util.Random;
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.5
+ * @version 0.2.0
  */
 public class Bot extends Player
 {
@@ -49,7 +49,11 @@ public class Bot extends Player
         {
             botChoosenCard = super.getPlayerCards().get(n);
             if (Rules.checkChoose(botChoosenCard, this))
+            {
+                this.getPlayerCards().remove(botChoosenCard);
+                score -= botChoosenCard.getCardScore();
                 break;
+            }
         }
 
         if (botChoosenCard instanceof WildCard || botChoosenCard instanceof WildDrawCard)
@@ -78,6 +82,7 @@ public class Bot extends Player
             Rules.applyChoose(botChoosenCard, botChoosenCard.getCardColor());
 
         
+
         // wild draw case
         if (botChoosenCard instanceof WildDrawCard)
         {
