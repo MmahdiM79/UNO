@@ -3,11 +3,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 
+
 /**
  * This class is Monitoring on the enforcement of game rules
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.14
+ * @version 0.0.15
  */
 public class Rules 
 {
@@ -105,7 +106,7 @@ public class Rules
         }
 
         boardCard = gameCards.remove(0);
-        boardColor = boardCard.getCardColor();
+        boardColor = Color.getBackgroundColor(boardCard.getCardColor());
         gameCards.remove(0);
     }
 
@@ -135,15 +136,16 @@ public class Rules
                 if (card instanceof WildDrawCard)
                     continue;
 
-                if (checkChoose(playerChoosenCard, player))
+                if (checkChoose(card, player))
                     return false;
             }
+        
 
             return true;
         }
             
         // check the color of cards
-        if (playerChoosenCard.getCardColor() == boardColor)
+        if (Color.getBackgroundColor(playerChoosenCard.getCardColor()) == boardColor)
             return true;
 
         // check the number of number cards
@@ -169,7 +171,7 @@ public class Rules
     public static void applyChoose(Card playerChoosenCard, Color choosenColor)
     {
         changeBoardCard(playerChoosenCard);
-        boardColor = choosenColor;
+        boardColor = Color.getBackgroundColor(choosenColor);
 
 
 
@@ -197,16 +199,20 @@ public class Rules
 
     public static void runGame(Scanner inputs)
     {
+        //  * Required variables *
 
-        Player currentPlayer;
-        int currentPlayerindex = firstPlayer();
-        int increasment = 1;
-        String holdInput;
+        Player currentPlayer; // hold the current player
+        int currentPlayerindex = firstPlayer(); // hold the current player index
+        Card playerChoosenCard; // hold the player choosen card
+        Color playerChoosenColor; // hold the player choosen color
+        String holdInput; // hold the player inputs
+
 
 
 
         while (!endGame())
         {
+            // set the current player
             currentPlayer = players.get(currentPlayerindex);
 
             
@@ -216,35 +222,118 @@ public class Rules
                 // ask the player password
                 Printer.getPassToStartTurn(currentPlayer);
                 holdInput = inputs.nextLine();
-
+                
                 // check player input
                 if (currentPlayer.getPlayerPass().equals(holdInput))
+                break;
+                
+                // say that player input is incorrect
+                Printer.inValidInputError(inputs);
+            }
+            
+
+            // check the player cards
+            if (!checkPlayerCards(currentPlayer))
+            {
+                // get a card to player
+                giveCardToPlayer(currentPlayer);
+
+                // check the player cards again
+                if (!checkPlayerCards(currentPlayer))
+                {
+                    // show the board, number of the other players cards and current player cards
+                    Printer.printGameBoard(boardCard, boardColor);
+                    Printer.printNumberOfPlayersCards(players, currentPlayerindex );
+                    Printer.printPlayerCards(currentPlayer);
+
+
+                    // say to player that he/she can't choose any card
+                    Printer.noChoiceError(inputs);
+
+                    // go the the next player
+                    currentPlayerindex = setIndex(boardCard, currentPlayerindex);
+                    continue;
+                }
+            }
+            
+
+            // while player choose a valid card
+            while (true)
+            {
+                // while player choose a valid card code
+                while (true)
+                {
+                    // show the board, number of the other players cards and current player cards
+                    Printer.printGameBoard(boardCard, boardColor);
+                    Printer.printNumberOfPlayersCards(players, currentPlayerindex );
+                    Printer.printPlayerCards(currentPlayer);
+
+
+                    // ask the player choice
+                    Printer.getPlayerChoice(currentPlayer);
+                    holdInput = inputs.nextLine();
+
+
+                    // check player choice
+                    if (holdInput.length() > 0 && holdInput.length() < 4 && isInt(holdInput))
+                        if (Integer.valueOf(holdInput) <= 108  &&  Integer.valueOf(holdInput) > 0)
+                            if (currentPlayer.haveCard(Integer.valueOf(holdInput)))
+                                break;
+                
+
+                    // say that player input is incorrect
+                    Printer.inValidInputError(inputs);
+                }
+
+
+                // get player choosen card
+                playerChoosenCard = currentPlayer.removeCard(Integer.valueOf(holdInput));
+
+                // check the player choosen card
+                if (checkChoose(playerChoosenCard, currentPlayer))
+                {
+                    if (playerChoosenCard instanceof WildCard || playerChoosenCard instanceof WildDrawCard)
+                    {
+                        // while player choose a currect input
+                        while (true)
+                        {
+                            // ask the player choosen color
+                            Printer.getPlayerChoosenColor();
+                            holdInput = inputs.nextLine();
+
+                            // check the player input
+                            if (holdInput.length() == 1 && holdInput.charAt(0) > '0' && holdInput.charAt(0) < '5')
+                                break;
+
+                            
+                            // say that player input is incorrect
+                            Printer.inValidInputError(inputs);
+
+                             // show the board, number of the other players cards and current player cards
+                            Printer.printGameBoard(boardCard, boardColor);
+                            Printer.printNumberOfPlayersCards(players, currentPlayerindex );
+                            Printer.printPlayerCards(currentPlayer);
+                        }
+
+                    } 
+
+                    else 
+                        applyChoose(playerChoosenCard, playerChoosenCard.getCardColor());
+
+                    
                     break;
+                }
+
+
+                // give back the card to the player
+                currentPlayer.addCard(playerChoosenCard);
 
                 // say that player input is incorrect
                 Printer.inValidInputError(inputs);
             }
 
-            // show the board, number of the other players cards and current player cards
-            Printer.printGameBoard(boardCard, boardColor);
-            Printer.printNumberOfPlayersCards(players, currentPlayerindex );
-            Printer.printPlayerCards(currentPlayer);
-
-
-            // while player choose a vlid card code
-            while (true)
-            {
-                // ask the player choice
-                Printer.getPlayerChoice(currentPlayer);
-                holdInput = inputs.nextLine();
-
-                // check player choice
-                if (in)
-            
-                break;
-            }
-
-            break;
+            // go to the next player
+            currentPlayerindex = setIndex(playerChoosenCard, currentPlayerindex);
         }
     }
 
@@ -297,11 +386,56 @@ public class Rules
     }
 
 
+    // this method return ture if player have at least one card to play
+    private static boolean checkPlayerCards(Player player)
+    {
+        for (Card card: player.getPlayerCards())
+        {
+            if (checkChoose(card, player))
+                return true;
+        }
+
+        return false;
+    }
+
+
+    // this method give a card to player from game cards
+    private static void giveCardToPlayer(Player currentPlayer)
+    {
+        currentPlayer.addCard(gameCards.get(0));
+        gameCards.remove(0);
+    }
+
+
     // this method change the board card
     private static void changeBoardCard(Card newCard)
     {
         gameCards.add(boardCard);
         boardCard = newCard;
+    }
+
+
+    // this method get the next player index due to the player choosen card
+    private static int setIndex(Card playerChoosenCard, int currentPlayerindex)
+    {
+        // skip card case
+        if (playerChoosenCard instanceof SkipCard)
+            return currentPlayerindex+2;
+
+        // reverse card case
+        if (playerChoosenCard instanceof ReverseCard)
+        {
+            revesePlayers();
+            return (players.size() - currentPlayerindex);
+        }
+
+        // finish one round case
+        if (currentPlayerindex+1 == players.size())
+            return 0;
+
+
+        // other cases
+        return currentPlayerindex+1;
     }
 
 
