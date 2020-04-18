@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.9
+ * @version 0.2.0
  * 
  * @see Person
  */
@@ -18,7 +18,7 @@ public class Player extends Person
             /* Feilds */
 
     // the score of the player
-    private int score;
+    protected int score;
 
     // the password of the player in the game
     private String playerPass;
@@ -119,7 +119,7 @@ public class Player extends Person
         } 
 
         score -= cardToRemove.getCardScore();
-        playerCards.remove(cardCodeToRemove);
+        playerCards.remove(cardToRemove);
 
         return cardToRemove;
     }
