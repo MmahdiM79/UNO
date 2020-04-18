@@ -9,7 +9,7 @@ import java.util.Scanner;
  * ( may not work on windows )
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.0
+ * @version 0.1.5
  */
 public class Printer 
 {
@@ -84,8 +84,8 @@ public class Printer
         clear();
 
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.print(indent + "\t  " + 
-                    "Please type the name of the player" + playerNum +":  ");
+        System.out.print(indent + "\b\b\b\b\b\b\b\b\b\b\b" + 
+                    "Please type the name of the player" + playerNum +" (if you want to make bot type bot):  ");
     }
 
 
