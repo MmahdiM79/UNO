@@ -1,13 +1,15 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
 /**
  * This class do all required prints
  * This class designed for UNIX bash
  * ( may not work on windows )
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.14
+ * @version 0.0.15
  */
 public class Printer 
 {
@@ -121,6 +123,23 @@ public class Printer
 
 
     /**
+     * This method ask the board color when player play a wild card
+     */
+    public static void getPlayerChoosenColor()
+    {
+        System.out.println("You uesed a wild card. now choose a color ( " + Color.getColorCodeString(Color.WHITE) +
+                                Color.getColorCodeString(Color.RED_B) + " 1 " + Color.getColorCodeString(Color.RESET) +
+                                ", " + Color.getColorCodeString(Color.WHITE) +
+                                Color.getColorCodeString(Color.YELLOW_B) + " 2 " + Color.getColorCodeString(Color.RESET) + 
+                                ", " + Color.getColorCodeString(Color.WHITE) + 
+                                Color.getColorCodeString(Color.GREEN_B) + " 3 " + Color.getColorCodeString(Color.RESET) + 
+                                ", " + Color.getColorCodeString(Color.WHITE) + 
+                                Color.getColorCodeString(Color.BLUE_B) + " 4 " + Color.getColorCodeString(Color.RESET) + 
+                                " ) :   ");
+    }
+
+
+    /**
      * This method print the game board. t
      * The card on the table and the color that plyers given card must have the same color as it
      * 
@@ -131,7 +150,7 @@ public class Printer
     {
         clear();
 
-        System.out.print("\n\n\n");
+
         for (int j = 1; j <= 7; j++)
         {
             System.out.print(indent + "\t\t\b" + theCardOnTheBoard.toString(-j) + "    " + theCardOnTheBoard.toString(j));
@@ -237,6 +256,25 @@ public class Printer
                                             Color.getColorCodeString(Color.RESET));
         finishEnter(finish);
     }
+
+
+    /**
+     * This method says to player that he/she can't choose any card
+     * 
+     * @param finish : the player input source
+     */
+    public static void noChoiceError(Scanner finish)
+    {
+        System.out.println("\t\t\t" + 
+                                Color.getColorCodeString(Color.YELLOW)+ Color.getColorCodeString(Color.RED) +
+                                            "<@ ! YOU CAN'T CHOOSE ANY CARD. ONE CARD HAVE GIVEN TO YOU ! @>" + 
+                                            Color.getColorCodeString(Color.RESET));
+
+        finishEnter(finish);
+    }
+
+
+
 
 
     
