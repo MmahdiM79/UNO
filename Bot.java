@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -5,7 +6,7 @@ import java.util.Random;
  * 
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.0
+ * @version 0.1.5
  */
 public class Bot extends Player
 {
@@ -34,8 +35,14 @@ public class Bot extends Player
     /**
      * This method is a kind of main method for bot
      * It makes bot decision
+     * 
+     * 
+     * @param players : the players of the game
+     * @param botIndex : the index of the bot in the player arraylist
+     * 
+     * @return the bot choosen card
      */ 
-    public void playTurn()
+    public Card playTurn(ArrayList<Player> players, ArrayList<Card> penaltyCards, int botIndex)
     {
         Card botChoosenCard = null;
         for (int n = 0; n < super.getPlayerCards().size(); n++)
@@ -69,5 +76,22 @@ public class Bot extends Player
         }
         else
             Rules.applyChoose(botChoosenCard, botChoosenCard.getCardColor());
+
+        
+        // wild draw case
+        if (botChoosenCard instanceof WildDrawCard)
+        {
+            int index = (botIndex+1)%players.size();
+            int n = penaltyCards.size();
+
+            for (; n > 0; n--)
+            {
+                players.get(index).addCard(penaltyCards.get(0));;
+                penaltyCards.remove(0);
+            }
+        }
+
+
+        return botChoosenCard;
     }
 }
