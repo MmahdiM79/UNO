@@ -9,7 +9,7 @@ import java.util.Scanner;
  * ( may not work on windows )
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.0.15
+ * @version 0.1.0
  */
 public class Printer 
 {
@@ -184,16 +184,15 @@ public class Printer
             System.out.print("\t " + player.getFirstName() + ":  " + player.getNumberOfPlayerCards());
 
             if (cntr == 0 && (currentPlayerIndex == (players.size()-1)))
-                System.out.println("\t---> (next player)");
+                System.out.print("\t---> (next player)");
 
             if (cntr == currentPlayerIndex)
-                System.out.println("\t---> (currrent player)");
+                System.out.print("\t---> (currrent player)");
             else if ((cntr-1) == currentPlayerIndex)
-                System.out.println("\t---> (next player)");
-            else
-                System.out.print("\n");
-        
+                System.out.print("\t---> (next player)");
+            
 
+            System.out.print("\n");
             cntr++;
         }
 
@@ -239,7 +238,31 @@ public class Printer
     {
         System.out.print("\nhey " + Color.getColorCodeString(Color.BLACK_BRIGHT_B) +
                             player.getFirstName() + Color.getColorCodeString(Color.RESET) +
-                                "choose a Card (enter the code of your choosen card):  ");
+                                " choose a Card (enter the code of your choosen card):  ");
+    }
+
+
+    public static void printScores(ArrayList<Player> players, Scanner finish)
+    {
+        clear();
+        System.out.print(Color.getColorCodeString(Color.WHITE)  + "\n\n\n\n\n\n\n");
+
+
+        System.out.println(indent + "\b\b\b\b\b\bPlayers  name |  Players  Score         Number Of Players Cards");
+        System.out.println(indent + "\b\b\b\b\b\b–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––");
+
+        Player currPlayer;
+        for (int index = 0; index < players.size(); index++)
+        {
+            currPlayer = players.get(index);
+            System.out.printf("%s\b\b\b\b\b\b%13s :  %7d                      %8d\n", indent, 
+                                                                        currPlayer.getFirstName(), 
+                                                                        currPlayer.getScore(),  
+                                                                        currPlayer.getNumberOfPlayerCards());
+        }
+
+        System.out.print("\n\n\n\n" + Color.getColorCodeString(Color.RESET));
+        finishEnter(finish);
     }
 
 
