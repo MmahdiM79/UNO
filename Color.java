@@ -5,7 +5,7 @@
  * 0: black, 1: red, 2: yellow, 3: green, 4: blue
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.7
+ * @version 0.1.8
  */
 public enum Color 
 {
@@ -32,12 +32,12 @@ public enum Color
 
         // background colors
         BLACK_B.colorCodeString = "\033[40m";
-        BLACK_BRIGHT_B.colorCodeString = "\033[0;100m";
-        RED_B.colorCodeString = "\033[0;101m";
-        YELLOW_B.colorCodeString = "\033[0;103m";
-        GREEN_B.colorCodeString = "\033[0;102m";
-        BLUE_B.colorCodeString = "\033[0;106m";
-        WHITE_B.colorCodeString = "\033[0;107m";
+        BLACK_BRIGHT_B.colorCodeString = "\033[100m";
+        RED_B.colorCodeString = "\033[101m";
+        YELLOW_B.colorCodeString = "\033[103m";
+        GREEN_B.colorCodeString = "\033[102m";
+        BLUE_B.colorCodeString = "\033[106m";
+        WHITE_B.colorCodeString = "\033[107m";
 
         // reset colors code
         RESET.colorCodeString = "\033[92;40m";
@@ -54,4 +54,38 @@ public enum Color
     {
         return color.colorCodeString;
     }
+
+
+    /**
+     * This method the background color of the input text color
+     * 
+     * @param textColor : the color that you want 
+     * @return the background color
+     */
+    public static Color getBackgroundColor(Color textColor)
+    {
+        switch (textColor)
+        {
+            case RED:
+                return RED_B;
+
+            case YELLOW:
+                return YELLOW_B;
+
+            case GREEN:
+                return GREEN_B;
+
+            case BLUE:
+                return BLUE_B;
+
+            case WHITE:
+                return WHITE_B;
+
+            case BLACK:
+                return BLACK_BRIGHT_B;
+
+            default:
+                return BLACK_B;
+        }
+    } 
 }
