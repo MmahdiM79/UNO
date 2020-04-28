@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+
+
+
 /**
  * This class repersent a player int Run class
  * it holds the player score, password and player cards
@@ -33,6 +36,12 @@ public class Player extends Person
 
           /* Constructor */
 
+    /**
+     * Create a new Pleyer with given name and password
+     *  
+     * @param firstName : name of the player
+     * @param playerPass : password of player
+     */
     public Player(String firstName, String playerPass)
     {
         // set the super class

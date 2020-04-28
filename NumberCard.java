@@ -1,6 +1,7 @@
 
 
 
+
 /**
  * This method represent a numeral card in UNO game
  * It extends from {@code Card} class.

@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 
+
 /**
  * The main class of the game.
  * This game designed for UNIX bash !. 

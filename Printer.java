@@ -16,7 +16,8 @@ public class Printer
             /* Feilds */
 
     // indent
-    private static final String indent = "\t\t\t      ";
+    private static final String INDENT = "\t\t\t      ";
+
 
 
 
@@ -33,7 +34,7 @@ public class Printer
         clear();
 
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println(Color.getColorCodeString(Color.RESET) + indent + "\b\b\b\b\b\b\b" +
+        System.out.println(Color.getColorCodeString(Color.RESET) + INDENT + "\b\b\b\b\b\b\b" +
                                 "please use (cntrl, +) and (cntrl, -) to fit this line to your screen");
 
         System.out.println("<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>");
@@ -50,14 +51,14 @@ public class Printer
         System.out.println(Color.getColorCodeString(Color.RESET));
 
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println(indent + "\t       " + "🃏 <@••••••. UNO Game .••••••@> 🀄️");
+        System.out.println(INDENT + "\t       " + "🃏 <@••••••. UNO Game .••••••@> 🀄️");
         System.out.print("\n\n");
-        System.out.println(indent + "\t      " + "            1. New game");
+        System.out.println(INDENT + "\t      " + "            1. New game");
         System.out.print("\n");
-        System.out.println(indent + "\t      " + "              2. exit");
-        System.err.println(indent + "\t       " + "🀄️ <@••••••••••••••••••••••••@> 🃏");
+        System.out.println(INDENT + "\t      " + "              2. exit");
+        System.err.println(INDENT + "\t       " + "🀄️ <@••••••••••••••••••••••••@> 🃏");
         System.out.print("\n\n");
-        System.out.print(  indent + "\t      " + "                0_0? ");
+        System.out.print(  INDENT + "\t      " + "                0_0? ");
     }  
     
 
@@ -69,7 +70,7 @@ public class Printer
         clear();
 
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.print(indent + "\b\b\b" + 
+        System.out.print(INDENT + "\b\b\b" + 
                     "Please enter the number of the players (1 < n < 8):  ");
     }
 
@@ -84,7 +85,7 @@ public class Printer
         clear();
 
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.print(indent + "\b\b\b\b\b\b\b\b\b\b\b" + 
+        System.out.print(INDENT + "\b\b\b\b\b\b\b\b\b\b\b" + 
                     "Please type the name of the player" + playerNum +" (if you want to make bot type bot):  ");
     }
 
@@ -99,7 +100,7 @@ public class Printer
         clear();
 
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.print(indent + "\b" + 
+        System.out.print(INDENT + "\b" + 
                             "Hi " +  Color.getColorCodeString(Color.BLACK_BRIGHT_B) + playerName +
                     Color.getColorCodeString(Color.RESET) + " Please choose a password for yourself:  ");
     }
@@ -127,7 +128,7 @@ public class Printer
      */
     public static void getPlayerChoosenColor()
     {
-        System.out.println("You uesed a wild card. now choose a color ( " + Color.getColorCodeString(Color.WHITE) +
+        System.out.print("You uesed a wild card. now choose a color ( " + Color.getColorCodeString(Color.WHITE) +
                                 Color.getColorCodeString(Color.RED_B) + " 1 " + Color.getColorCodeString(Color.RESET) +
                                 ", " + Color.getColorCodeString(Color.WHITE) +
                                 Color.getColorCodeString(Color.YELLOW_B) + " 2 " + Color.getColorCodeString(Color.RESET) + 
@@ -153,7 +154,7 @@ public class Printer
 
         for (int j = 1; j <= 7; j++)
         {
-            System.out.print(indent + "\t\t\b" + theCardOnTheBoard.toString(-j) + "    " + theCardOnTheBoard.toString(j));
+            System.out.print(INDENT + "\t\t\b" + theCardOnTheBoard.toString(-j) + "    " + theCardOnTheBoard.toString(j));
 
             if (j == 2)
                 System.out.print("  table color");
@@ -248,14 +249,14 @@ public class Printer
         System.out.print(Color.getColorCodeString(Color.WHITE)  + "\n\n\n\n\n\n\n");
 
 
-        System.out.println(indent + "\b\b\b\b\b\bPlayers  name |  Players  Score         Number Of Players Cards");
-        System.out.println(indent + "\b\b\b\b\b\b–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––");
+        System.out.println(INDENT + "\b\b\b\b\b\bPlayers  name |  Players  Score         Number Of Players Cards");
+        System.out.println(INDENT + "\b\b\b\b\b\b–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––");
 
         Player currPlayer;
         for (int index = 0; index < players.size(); index++)
         {
             currPlayer = players.get(index);
-            System.out.printf("%s\b\b\b\b\b\b%13s :  %7d                      %8d\n", indent, 
+            System.out.printf("%s\b\b\b\b\b\b%13s :  %7d                      %8d\n", INDENT, 
                                                                         currPlayer.getFirstName(), 
                                                                         currPlayer.getScore(),  
                                                                         currPlayer.getNumberOfPlayerCards());
@@ -273,7 +274,7 @@ public class Printer
      */
     public static void inValidInputError(Scanner finish)
     {
-        System.out.println(indent + "\t         " + 
+        System.out.println(INDENT + "\t         " + 
                                 Color.getColorCodeString(Color.YELLOW)+ Color.getColorCodeString(Color.RED) +
                                             "<@ ! YOUR INPUT IS INVALID ! @>" + 
                                             Color.getColorCodeString(Color.RESET));
@@ -306,7 +307,7 @@ public class Printer
     // this method wait until player push 'enter' bottom
     private static void finishEnter(Scanner inputsSource)
     {
-        System.out.println(indent + "\t\t    " + "(press enter to continue)");
+        System.out.println(INDENT + "\t\t    " + "(press enter to continue)");
         inputsSource.nextLine();
     }
 

@@ -1,7 +1,10 @@
 
 
+
+
 /**
  * This class represent a Card in UNO game.
+ * 
  * 
  * @author Mohammad Mahdi Malmasi
  * @version 0.1.7

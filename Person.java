@@ -1,4 +1,7 @@
 
+
+
+
 /**
  * This class repersent a person.
  * it holds the name, and gender of the person
@@ -30,7 +33,15 @@ public class Person
 
     
           /* Constructor */
-    
+
+    /**
+     * Create a new Person with given details
+     * 
+     * @param firstName : the first name of person
+     * @param lastName : the last name of person
+     * @param age : the age of person
+     * @param gender : the gender of person
+     */
     public Person(String firstName, String lastName, int age, String gender)
     {
         this.firstName = firstName;

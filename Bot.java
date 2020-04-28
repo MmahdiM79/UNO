@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+
+
 /**
  * This class is a simple bot that play insted player
  * 
@@ -10,13 +12,6 @@ import java.util.Random;
  */
 public class Bot extends Player
 {
-
-
-
-
-
-
-
 
             /* Constructor */
 
@@ -56,6 +51,8 @@ public class Bot extends Player
             }
         }
 
+
+        // the cases that bot must choose a color
         if (botChoosenCard instanceof WildCard || botChoosenCard instanceof WildDrawCard)
         {
             Random rand = new Random();
