@@ -40,5 +40,3 @@ So pull requests are welcome for this parts or other changes that make it better
 
 
 
-###### any question?
-[ask ](m.mahdi.m79@gamil.com)
